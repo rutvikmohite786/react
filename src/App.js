@@ -12,6 +12,8 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
+import Dashboard from "./components/Dashboard";
+
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -36,9 +38,11 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log(currentUser)
     if (currentUser) {
-      setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+      console.log("trueee")
+      // setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
+      // setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
     } else {
       setShowModeratorBoard(false);
       setShowAdminBoard(false);
@@ -49,7 +53,7 @@ const App = () => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-          bezKoder
+          Rutvik
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -123,6 +127,7 @@ const App = () => {
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
 

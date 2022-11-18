@@ -52,7 +52,7 @@ const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
 
-  const [username, setUsername] = useState("");
+  const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
@@ -61,8 +61,8 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
+    const name = e.target.value;
+    setUsername(name);
   };
 
   const onChangeEmail = (e) => {
@@ -83,7 +83,7 @@ const Register = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(username, email, password))
+      dispatch(register(name, email, password))
         .then(() => {
           setSuccessful(true);
         })
@@ -110,8 +110,8 @@ const Register = () => {
                 <Input
                   type="text"
                   className="form-control"
-                  name="username"
-                  value={username}
+                  name="name"
+                  value={name}
                   onChange={onChangeUsername}
                   validations={[required, vusername]}
                 />
@@ -138,6 +138,18 @@ const Register = () => {
                   value={password}
                   onChange={onChangePassword}
                   validations={[required, vpassword]}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="password">confirm password</label>
+                <Input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    value={password}
+                    onChange={onChangePassword}
+                    validations={[required, vpassword]}
                 />
               </div>
 
