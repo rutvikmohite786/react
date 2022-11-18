@@ -7,6 +7,13 @@ const register = (name, email, password) => {
     name,
     email,
     password,
+  }).then((response) => {
+    console.log(response);
+    if (response.data) {
+      localStorage.setItem("user", JSON.stringify(response.data));
+      console.log('enter');
+    }
+    return response.data;
   });
 };
 
@@ -20,7 +27,7 @@ const login = (email, password) => {
       console.log(response);
       if (response.data) {
 
-        localStorage.setItem("user", JSON.stringify(response.data.tokens.access.token));
+        localStorage.setItem("user", JSON.stringify(response.data));
         console.log('enter');
       }
       return response.data;

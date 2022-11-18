@@ -7,6 +7,7 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
 import { register } from "../actions/auth";
+import {Navigate} from "react-router-dom";
 
 const required = (value) => {
   if (!value) {
@@ -51,6 +52,8 @@ const vpassword = (value) => {
 const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
+  const { isLoggedIn } = useSelector(state => state.auth);
+
 
   const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -92,6 +95,10 @@ const Register = () => {
         });
     }
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/profile" />;
+  }
 
   return (
     <div className="col-md-12">
